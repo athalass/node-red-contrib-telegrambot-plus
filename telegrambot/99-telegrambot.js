@@ -122,6 +122,8 @@ module.exports = function(RED) {
             messageDetails = { chatId: botMsg.chat.id, messageId: botMsg.message_id, type: 'voice', content: botMsg.voice.file_id, caption: botMsg.caption, date: botMsg.date };
         } else if (botMsg.location) {
             messageDetails = { chatId: botMsg.chat.id, messageId: botMsg.message_id, type: 'location', content: botMsg.location };
+        } else if (botMsg.venue) {
+            messageDetails = { chatId: botMsg.chat.id, messageId: botMsg.message_id, type: 'venue', content: botMsg.venue };
         } else if (botMsg.contact) {
             messageDetails = { chatId: botMsg.chat.id, messageId: botMsg.message_id, type: 'contact', content: botMsg.contact };
         } else {
@@ -367,6 +369,12 @@ module.exports = function(RED) {
                                 break;
                             case 'location':
                                 node.telegramBot.sendLocation(chatId, msg.payload.content.latitude, msg.payload.content.longitude, msg.payload.options).then(function (sent) {
+                                        msg.payload.sentMessageId = sent.message_id;
+                                        node.send(msg);
+                                    });
+                                break;
+                            case 'venue':
+                                node.telegramBot.sendVenue(chatId, msg.payload.content.latitude, msg.payload.content.longitude, msg.payload.content.title, msg.payload.content.address, msg.payload.options).then(function (sent) {
                                         msg.payload.sentMessageId = sent.message_id;
                                         node.send(msg);
                                     });
