@@ -1,5 +1,5 @@
 {
-    "name": "node-red-contrib-telegrambot",
+    "name": "node-red-contrib-telegrambot-plus",
     "version": "1.10.0",
     "description": "Telegram bot nodes.",
     "dependencies": {
@@ -15,8 +15,9 @@
     ],
     "repository" :
     { "type" : "git"
-    , "url" : "https://github.com/windkh/node-red-contrib-telegrambot"
+    , "url" : "https://github.com/snippet-java/node-red-contrib-telegrambot"
     },
-    "author": "Karl-Heinz Wind",
+    "original author": "Karl-Heinz Wind",
+    "modified by": "Syahrul Aiman Shaharuddin",
     "license": "MIT"
 }
